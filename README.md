@@ -74,6 +74,8 @@ apparently don't meant their refresh rate is >1 per month. 😠
 Use the included `docker-compose.yml` file for development..
 
 ```bash
+$ export KORTO_APARTMENT_ID=xxxxx
+$ export KORTO_AUTH_TOKEN=xxxxxx
 $ docker-compose up
 ```
 
@@ -81,8 +83,11 @@ $ docker-compose up
 
 ```bash
 $ pip install -r requirements.txt
-$ python src/collector.py
+$ KORTO_APARTMENT_ID=xxxx KORTO_AUTH_TOKEN=xxxx python src/collector.py
 ```
+
+Korto auth token is a JWT without expire time (hmmm, interesting... 😱). The `auth_token` cookie has a long expiry time
+of about a year.
 
 ## References
 

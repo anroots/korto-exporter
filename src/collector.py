@@ -27,6 +27,8 @@ class KortoCollector(object):
 
     @REQUEST_TIME.time()
     def collect(self):
+        logger.info('Scraping Korto for new metrics...')
+
         meter_readings = self.korto.get_meter_readings(self.apartment_id)
 
         for meter in meter_readings:
@@ -57,6 +59,8 @@ class KortoCollector(object):
                          balance.get('last_payment') or 0)
         yield gauge
 
+        logger.info('Scraping completed')
+
 
 if __name__ == '__main__':
     logger.info('korto-exporter (https://github.com/anroots/korto-exporter) starting up...')
@@ -68,6 +72,7 @@ if __name__ == '__main__':
         sys.exit(1)
     REGISTRY.register(KortoCollector(api_url, apartment_id, auth_token))
     start_http_server(8080)
+    logger.info('Collector started, listening on port :8080; waiting for scrapes...')
 
     while True:
         time.sleep(1)

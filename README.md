@@ -15,10 +15,16 @@ $ docker run -p 8080:8080 -e KORTO_AUTH_TOKEN=xxxxx -e KORTO_APARTMENT_ID=xxxx a
 
 Configure a new Prometheus target to scrape the exposed endpoint. As (regardless of what one might expect) the Korto
 system is not really real-time automagical, it doesn't make sense to configure scraping frequency of more than once
-or twice a day.
+or twice a day (or week).
 
 ```yaml
-
+scrape_configs:
+  - job_name: 'korto'
+    scrape_interval: 24h
+    static_configs:
+      - targets:
+        - korto-exporter:8080
+ 
 ```
 
 The following metrics will be saved:

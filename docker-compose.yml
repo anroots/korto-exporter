@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  exporter:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/opt/korto-exporter:ro
+    environment:
+      - KORTO_APARTMENT_ID
+      - KORTO_AUTH_TOKEN

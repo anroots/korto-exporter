@@ -11,7 +11,7 @@ from src.lib.korto import Korto
 
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 
-logging.basicConfig(level=os.environ.get('LOG_LEVEL', 'INFO'))
+logging.basicConfig(level=os.environ.get('LOG_LEVEL', 'INFO'), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger('korto-exporter')
 
 

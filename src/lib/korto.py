@@ -18,7 +18,7 @@ class Korto:
                 'id': apartment_id
             },
             'query': '''
-          query GetMetersData($id: Int!, $ignore_date_limits: Boolean) {
+          query GetMetersData($id: ID!, $ignore_date_limits: Boolean) {
   viewer {
     id
     apartment(id: $id) {
@@ -87,7 +87,7 @@ class Korto:
                 'id': apartment_id
             },
             'query': '''
-                  query GetApartmentBalance($id: Int!) {
+                  query GetApartmentBalance($id: ID!) {
   viewer {
     id
     apartment(id: $id) {
